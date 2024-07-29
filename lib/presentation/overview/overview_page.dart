@@ -60,7 +60,9 @@ class TodoListTile extends StatelessWidget {
     return ListTile(
       leading: Checkbox(
         value: todo.isCompleted,
-        onChanged: (value) {},
+        onChanged: (value) => context.read<OverviewBloc>().add(todo.isCompleted
+            ? OverviewUncompleteTodo(id: todo.id)
+            : OverviewCompleteTodo(id: todo.id)),
       ),
       title: Text(todo.title),
       subtitle: Text(todo.description),

@@ -10,3 +10,13 @@ abstract class OverviewEvent extends Equatable {
 class OverviewStarted extends OverviewEvent {
   const OverviewStarted();
 }
+
+class OverviewCompleteTodo extends OverviewEvent {
+  final String id;
+  const OverviewCompleteTodo({required this.id});
+}
+
+class OverviewUncompleteTodo extends OverviewEvent {
+  final String id;
+  const OverviewUncompleteTodo({required this.id});
+}
