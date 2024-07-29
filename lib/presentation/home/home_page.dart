@@ -1,6 +1,7 @@
-import 'package:bloc_stream/presentation/cubit/home_cubit.dart';
-import 'package:bloc_stream/presentation/start_page.dart';
-import 'package:bloc_stream/presentation/todo_overview_page.dart';
+import 'package:bloc_stream/presentation/edit_todo/edit_todo_page.dart';
+import 'package:bloc_stream/presentation/home/cubit/home_cubit.dart';
+import 'package:bloc_stream/presentation/overview/overview_page.dart';
+import 'package:bloc_stream/presentation/stats/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,13 +27,13 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
-        children: const [TodosOverviewPage(), StatsPage()],
+        children: const [OverviewPage(), StatsPage()],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         key: const Key('homeView_addTodo_floatingActionButton'),
-        onPressed: () {},
+        onPressed: () => Navigator.of(context).push(EditTodoPage.route()),
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(

@@ -1,5 +1,6 @@
+import 'package:bloc_stream/data/data_source/todos_api.dart';
 import 'package:bloc_stream/data/data_source/todos_api_impl.dart';
-import 'package:bloc_stream/presentation/home_page.dart';
+import 'package:bloc_stream/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,8 +24,12 @@ void main() async {
   // ];
 
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
+  // await sharedPreferences.clear();
   final todoApiImpl = TodosApiImp(sharedPreferences: sharedPreferences);
+
+  // for (var todo in todos) {
+  //   await todoApiImpl.saveTodo(todo);
+  // }
 
   runApp(App(todoApiImpl: todoApiImpl));
 }
@@ -36,7 +41,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
+    return RepositoryProvider<TodosApi>.value(
       value: todoApiImpl,
       child: const AppView(),
     );
